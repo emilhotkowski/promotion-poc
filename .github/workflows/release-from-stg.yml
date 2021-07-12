@@ -18,9 +18,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: test/attestation-service@v1
-        if: ${{ inputs.release-package == 'attestation-service' }}
-        with:
-          env-secret: ${{ secrets.ENV_SECRET }}
+        if: contains(inputs.release-package, 'attestation-service')
 
   Release-to-Alfajores:
     runs-on: ubuntu-latest
@@ -31,6 +29,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - uses: release/attestation-service@v1
-        if: ${{ inputs.release-package == 'attestation-service' }}
+        if: contains(inputs.release-package, 'attestation-service')
         with:
           env-secret: ${{ secrets.ENV_SECRET }}

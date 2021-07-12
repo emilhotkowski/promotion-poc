@@ -1,7 +1,3 @@
-inputs:
-  env-secret:
-    description: 'env-secret'
-    required: true
 name: Test Attestation Service
 description: Test Attestation Service
 runs:
