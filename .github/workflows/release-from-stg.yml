@@ -7,7 +7,7 @@ on:
       release-package:
         description: 'Which package should be released in the workflow'
         required: true
-        default: 'all'
+        default: 'none'
 
 jobs:
   Build-Packages:
@@ -26,6 +26,7 @@ jobs:
     needs: Build-Packages
 
     steps:
+      - uses: actions/checkout@v2
       - run: ./packages/attestation-service/release/test.sh
         if: contains(github.event.inputs.release-package, 'attestation-service')
       - run: ./packages/phone-number-privacy/release/test.sh
@@ -37,6 +38,7 @@ jobs:
     needs: Test-Alfajores
 
     steps:
+      - uses: actions/checkout@v2
       - run: ./packages/attestation-service/release/release.sh
         if: contains(github.event.inputs.release-package, 'attestation-service')
         env:
