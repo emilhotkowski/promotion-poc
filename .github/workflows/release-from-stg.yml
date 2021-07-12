@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: test/attestation-service@v1
+      - run: ( cd packages/attestation-service/ && npm test)
         if: contains(github.event.inputs.release-package, 'attestation-service')
 
   Release-to-Alfajores:
@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: release/attestation-service@v1
+      - run: echo "Release my attestation service with secret $ENV_SECRET"
         if: contains(github.event.inputs.release-package, 'attestation-service')
-        with:
-          env-secret: ${{ secrets.ENV_SECRET }}
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
