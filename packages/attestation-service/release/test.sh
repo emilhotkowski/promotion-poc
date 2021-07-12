@@ -1,1 +1,2 @@
-(cd .. && npm test)
+cd packages/attestation-service
+npm test
