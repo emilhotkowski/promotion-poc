@@ -11,7 +11,8 @@ on:
 
 jobs:
   #Test and release to Alfajores
-  Test-Alfajores:
+  Test-Against-STG:
+    environment: STG
     runs-on: ubuntu-latest
 
     steps:
