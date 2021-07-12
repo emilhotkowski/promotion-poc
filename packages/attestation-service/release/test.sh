@@ -1,1 +1,1 @@
-npm test
+(cd .. && npm test)
