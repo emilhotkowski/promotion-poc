@@ -23,6 +23,7 @@ jobs:
   #Test and release to Alfajores
   Test-Alfajores:
     runs-on: ubuntu-latest
+    needs: Build-Packages
 
     steps:
       - run: ./packages/attestation-service/release/test.sh
