@@ -1,7 +1,27 @@
-name: Release to all environments from STG
+name: Release to STG
 
 on:
   # Allows you to run this workflow manually ONLY
   workflow_dispatch:
+    inputs:
+      release-package:
+        description: 'Which package should be released in the workflow'
+        required: true
+        default: 'none'
 
 jobs:
+  Release-to-STG:
+    runs-on: ubuntu-latest
+    environment: ALFAJORES
+    needs: Test-Against-STG
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: ./packages/attestation-service/release/release.sh
+        if: contains(github.event.inputs.release-package, 'attestation-service')
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
+      - run: ./packages/phone-number-privacy/release/release.sh
+        if: contains(github.event.inputs.release-package, 'phone-number-privacy')
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
