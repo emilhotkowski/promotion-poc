@@ -13,7 +13,6 @@ jobs:
   Release-to-STG:
     runs-on: ubuntu-latest
     environment: ALFAJORES
-    needs: Test-Against-STG
 
     steps:
       - uses: actions/checkout@v2
