@@ -1,4 +1,4 @@
-sname: Release to all environments from STG
+name: Release to all environments from STG
 
 on:
   # Allows you to run this workflow manually ONLY
