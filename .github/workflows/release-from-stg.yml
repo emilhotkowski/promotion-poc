@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - run: ( cd packages/attestation-service/ && npm test)
+      - run: ( cd packages/attestation-service/ && npm install && npm test) #TODO Extract to same test.sh 
         if: contains(github.event.inputs.release-package, 'attestation-service')
 
   Release-to-Alfajores:
