@@ -6,6 +6,7 @@ on:
     inputs:
       release-package:
         description: 'Which package should be released in the workflow'
+        options: ['attestation-service', 'phone-number-privacy']
         required: true
         default: 'none'
 
