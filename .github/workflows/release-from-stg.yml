@@ -6,7 +6,6 @@ on:
     inputs:
       release-package:
         description: 'Which package should be released in the workflow'
-        options: ['attestation-service', 'phone-number-privacy']
         required: true
         default: 'none'
 
@@ -18,10 +17,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: ./packages/attestation-service/release/test.sh
-        if: contains(github.event.inputs.release-package, 'attestation-service')
-      - run: ./packages/phone-number-privacy/release/test.sh
-        if: contains(github.event.inputs.release-package, 'phone-number-privacy')
+      - run: ./packages/${{github.event.inputs.release-package}}/test.sh
 
   Release-to-Alfajores:
     runs-on: ubuntu-latest
@@ -30,11 +26,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: ./packages/attestation-service/release/release.sh
-        if: contains(github.event.inputs.release-package, 'attestation-service')
-        env:
-          ENV_SECRET: ${{ secrets.ENV_SECRET }}
-      - run: ./packages/phone-number-privacy/release/release.sh
-        if: contains(github.event.inputs.release-package, 'phone-number-privacy')
+      - run: ./packages/${{github.event.inputs.release-package}}/release/release.sh
         env:
           ENV_SECRET: ${{ secrets.ENV_SECRET }}
