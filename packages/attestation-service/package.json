@@ -1,0 +1,22 @@
+{
+  "name": "promotion-poc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emilhotkowski/promotion-poc.git"
+  },
+  "author": "Emil Hotkowski <emil.hotkowski@swing.dev>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emilhotkowski/promotion-poc/issues"
+  },
+  "homepage": "https://github.com/emilhotkowski/promotion-poc#readme",
+  "dependencies": {
+    "jest": "^27.0.6"
+  }
+}

@@ -1,0 +1,13 @@
+inputs:
+  env-secret:
+    description: 'env-secret'
+    required: true
+name: Release Attestation Service
+description: Release Attestation Service
+runs:
+  using: "composite"
+  steps:
+    - run: echo "Release of attestation service with secret"
+      shell: bash
+    - run: echo ${{ inputs.env-secret }}.
+      shell: bash

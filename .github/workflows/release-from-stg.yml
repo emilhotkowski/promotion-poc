@@ -1,0 +1,36 @@
+name: Release to all environments from STG
+
+on:
+  # Allows you to run this workflow manually ONLY
+  workflow_dispatch:
+    inputs:
+      release-package:
+        description: 'Which package should be released in the workflow'
+        required: true
+        default: 'all'
+
+jobs:
+  #Test and release to Alfajores
+  Test-Alfajores:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: test/attestation-service@v1
+        if: ${{ inputs.release-package == 'attestation-service' }}
+        with:
+          env-secret: ${{ secrets.ENV_SECRET }}
+
+  Release-to-Alfajores:
+    runs-on: ubuntu-latest
+    environment: ALFAJORES
+    needs: Test-Alfajores
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: release/attestation-service@v1
+        if: ${{ inputs.release-package == 'attestation-service' }}
+        with:
+          env-secret: ${{ secrets.ENV_SECRET }}

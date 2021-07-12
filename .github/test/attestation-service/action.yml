@@ -1,0 +1,13 @@
+inputs:
+  env-secret:
+    description: 'env-secret'
+    required: true
+name: Test Attestation Service
+description: Test Attestation Service
+runs:
+  using: "composite"
+  steps:
+    - run: cd /packages/attestation-service/
+      shell: bash
+    - run: npm test
+      shell: bash
