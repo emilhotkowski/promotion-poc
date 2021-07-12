@@ -16,11 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: ./packages/attestation-service/release/release.sh
-        if: contains(github.event.inputs.release-package, 'attestation-service')
-        env:
-          ENV_SECRET: ${{ secrets.ENV_SECRET }}
-      - run: ./packages/phone-number-privacy/release/release.sh
-        if: contains(github.event.inputs.release-package, 'phone-number-privacy')
+      - run: ./packages/${{github.event.inputs.release-package}}/release/release.sh
         env:
           ENV_SECRET: ${{ secrets.ENV_SECRET }}
