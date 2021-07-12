@@ -25,7 +25,7 @@ jobs:
   Release-to-Alfajores:
     runs-on: ubuntu-latest
     environment: ALFAJORES
-    needs: Test-Alfajores
+    needs: Test-Against-STG
 
     steps:
       - uses: actions/checkout@v2
