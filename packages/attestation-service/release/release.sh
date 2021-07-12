@@ -1,0 +1,1 @@
+echo "Release attestation service $ENV_SECRET"

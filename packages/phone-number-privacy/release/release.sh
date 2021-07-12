@@ -1,0 +1,1 @@
+echo "Release phone number privacy $ENV_SECRET"

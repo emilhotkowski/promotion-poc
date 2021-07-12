@@ -10,15 +10,25 @@ on:
         default: 'all'
 
 jobs:
+  Build-Packages:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - run: ( cd packages/attestation-service/ && npm install)
+        if: contains(github.event.inputs.release-package, 'attestation-service')
+      - run: ( cd packages/phone-number-privacy/ && npm install)
+        if: contains(github.event.inputs.release-package, 'phone-number-privacy')
+
   #Test and release to Alfajores
   Test-Alfajores:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - run: ( cd packages/attestation-service/ && npm install && npm test) #TODO Extract to same test.sh 
+      - run: ./packages/attestation-service/release/test.sh
         if: contains(github.event.inputs.release-package, 'attestation-service')
+      - run: ./packages/phone-number-privacy/release/test.sh
+        if: contains(github.event.inputs.release-package, 'phone-number-privacy')
 
   Release-to-Alfajores:
     runs-on: ubuntu-latest
@@ -26,9 +36,11 @@ jobs:
     needs: Test-Alfajores
 
     steps:
-      - uses: actions/checkout@v2
-
-      - run: echo "Release my attestation service with secret $ENV_SECRET"
+      - run: ./packages/attestation-service/release/release.sh
         if: contains(github.event.inputs.release-package, 'attestation-service')
+        env:
+          ENV_SECRET: ${{ secrets.ENV_SECRET }}
+      - run: ./packages/phone-number-privacy/release/release.sh
+        if: contains(github.event.inputs.release-package, 'phone-number-privacy')
         env:
           ENV_SECRET: ${{ secrets.ENV_SECRET }}
