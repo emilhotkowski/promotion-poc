@@ -1,13 +1,9 @@
 name: Release to STG
 
 on:
-  # Allows you to run this workflow manually ONLY
-  workflow_dispatch:
-    inputs:
-      release-package:
-        description: 'Which package should be released in the workflow'
-        required: true
-        default: 'none'
+  push:
+    branches:
+      - main
 
 jobs:
   Release-to-STG:
@@ -15,7 +11,10 @@ jobs:
     environment: STG
 
     steps:
-      - uses: actions/checkout@v2
-      - run: ./packages/${{github.event.inputs.release-package}}/release/release.sh
-        env:
-          ENV_SECRET: ${{ secrets.ENV_SECRET }}
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
+      - run: |
+          git diff ./packages/phone-number-privacy
+          git diff ./packages/attestation-service
