@@ -24,3 +24,4 @@ jobs:
             package_name = echo ${changed_file} | sed "s/^.*packages//\(.*\)//$/\1/"
             echo "Changed packaged ${package_name}"
           done
+        shell: bash
