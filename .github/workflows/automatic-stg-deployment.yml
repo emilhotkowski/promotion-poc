@@ -31,11 +31,10 @@ jobs:
             fi
           done
           dedup_changed_packages=( $(printf '%s\n' "${changed_packages[@]}" | sort -u) )
-          echo "All values ${dedup_changed_packages[@]}"
 
           for changed_package in "${dedup_changed_packages[@]}"
           do
-            echo "Releasing ${changed_package} package"
+            echo "*** Releasing ${changed_package} package ***"
             ./packages/${changed_package}/release/release.sh
           done
         shell: bash
