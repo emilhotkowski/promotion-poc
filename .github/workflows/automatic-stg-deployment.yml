@@ -20,7 +20,7 @@ jobs:
       - run: |
           changed_packages=()
           for changed_file in ${{ steps.files.outputs.all }}; do
-
+            echo "Changed file ${changed_file}"
             #check if changed file is under "packages/" folder
             if [[ $changed_file == packages* ]]; then
 
@@ -41,5 +41,5 @@ jobs:
               fi
             fi
           done
-          echo "All values ${changed_packaged}"
+          echo "All values ${changed_packages}"
         shell: bash
