@@ -23,8 +23,13 @@ jobs:
             echo "------------------------"
             echo "Changed file ${changed_file}"
             if [[ $changed_file == packages* ]]; then
-              package_name=`sudo echo ${changed_file} | sed 's/packages\/\([^ ]*\)\/.*/\1/'`
+              package_name=`sudo echo ${changed_file} | sed 's/packages\/\([^ \/]*\).*/\1/'`
               echo "Changed packaged ${package_name}"
+
+              if ! [[ ${changed_packages[*]} =~ "$package_name" ]]; then
+                changed_packages += ($package_name)
+              fi
             fi
+          echo "All values ${changed_packaged}"
           done
         shell: bash
