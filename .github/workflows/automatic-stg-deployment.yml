@@ -29,7 +29,7 @@ jobs:
               echo "Changed packaged ${package_name}"
 
               #if this is the first time we encountered this packge, we add it to the array
-              if ! [[ ${changed_packages[*]} =~ "package_name" ]]
+              if ! [[ ${changed_packages[*]} =~ "package_name" ]]; then
                   changed_packages+=($package_name)
               fi
             fi
