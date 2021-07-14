@@ -29,14 +29,7 @@ jobs:
               echo "Changed packaged ${package_name}"
 
               #if this is the first time we encountered this packge, we add it to the array
-              match=0
-              for old_pck in "${changed_packages[@]}"; do
-                  if [[ old_pck = "$package_name" ]]; then
-                      match=1
-                      break
-                  fi
-              done
-              if [[ $match = 0 ]]; then
+              if ! [[ ${changed_packages[*]} =~ "package_name" ]]
                   changed_packages+=($package_name)
               fi
             fi
