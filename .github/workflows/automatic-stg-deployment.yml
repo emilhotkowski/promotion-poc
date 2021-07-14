@@ -28,6 +28,7 @@ jobs:
               package_name=`sudo echo ${changed_file} | sed 's/packages\/\([^ \/]*\).*/\1/'`
               echo "Changed packaged ${package_name}"
 
+              changed_packages+=($package_name)
             fi
           done
           dedup_changed_packages=( $(printf '%s\n' "${changed_packages[@]}" | sort -u) )
