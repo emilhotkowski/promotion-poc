@@ -41,5 +41,5 @@ jobs:
               fi
             fi
           done
-          echo "All values ${changed_packages}"
+          echo "All values ${changed_packages[@]}"
         shell: bash
