@@ -31,6 +31,6 @@ jobs:
 
             fi
           done
-          changed_packages=echo ${changed_packages[@]} | tr ' ' '\n' | sort | uniq | tr '\n' ' ' | sed -e 's/[[:space:]]*$//'
-          echo "All values ${changed_packages[@]}"
+          dedup_changed_packages=($(printf "%s\n" "${changed_packages[@]}" | sort -u | tr '\n' ' '))
+          echo "All values ${dedup_changed_packages[@]}"
         shell: bash
