@@ -17,7 +17,8 @@ jobs:
           fetch-depth: 0
       - id: files
         uses: jitterbit/get-changed-files@v1
-      - run: |
+      - name: Release only changed packages
+        run: |
           changed_packages=()
           for changed_file in ${{ steps.files.outputs.all }}; do
 
