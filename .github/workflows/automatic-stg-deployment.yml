@@ -17,6 +17,7 @@ jobs:
           fetch-depth: 0
       - id: files
         uses: jitterbit/get-changed-files@v1
+        name: Retrieve all changed files from the push
       - name: Release only changed packages
         run: |
           changed_packages=()
