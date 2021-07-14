@@ -21,7 +21,7 @@ jobs:
           changed_packages=()
           for changed_file in ${{ steps.files.outputs.all }}; do
             echo "Changed file ${changed_file}"
-            package_name=echo ${changed_file} | sed -e "s/^.*packages//\(.*\)//$/\1/"
+            package_name=echo ${changed_file} | sed -e 's/^.*packages//\(.*\)//$/\1/'
             echo "Changed packaged ${package_name}"
           done
         shell: bash
