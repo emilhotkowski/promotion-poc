@@ -20,17 +20,21 @@ jobs:
       - run: |
           changed_packages=()
           for changed_file in ${{ steps.files.outputs.all }}; do
-            echo "Changed file ${changed_file}"
+
             #check if changed file is under "packages/" folder
             if [[ $changed_file == packages* ]]; then
 
               #extract packge name
               package_name=`sudo echo ${changed_file} | sed 's/packages\/\([^ \/]*\).*/\1/'`
-              echo "Changed packaged ${package_name}"
 
               changed_packages+=($package_name)
             fi
           done
           dedup_changed_packages=( $(printf '%s\n' "${changed_packages[@]}" | sort -u) )
           echo "All values ${dedup_changed_packages[@]}"
+
+          for changed_package in "${dedup_changed_packages[@]}" do
+            echo "Releasing ${changed_package} package"
+            ./packages/${changed_package}/release/release.sh
+          done
         shell: bash
