@@ -22,7 +22,9 @@ jobs:
           for changed_file in ${{ steps.files.outputs.all }}; do
             echo "------------------------"
             echo "Changed file ${changed_file}"
-            package_name=`sudo echo ${changed_file} | sed 's/packages\/\([^ ]*\)\/.*/\1/'`
-            echo "Changed packaged ${package_name}"
+            if [[ $changed_file ~= ^packages]]; then
+              package_name=`sudo echo ${changed_file} | sed 's/packages\/\([^ ]*\)\/.*/\1/'`
+              echo "Changed packaged ${package_name}"
+            fi
           done
         shell: bash
