@@ -1,3 +1,1 @@
-echo "Release phone number privacy $ENV_SECRET"
-#simulate error
-exit 1
+echo "Some Azure magic to deploy our awesome code"
