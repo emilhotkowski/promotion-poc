@@ -42,5 +42,5 @@ jobs:
             for changed_package in "${dedup_changed_packages[@]}"
             do
               echo "*** Releasing ${changed_package} package ***"
-              ./packages/${changed_package}/release/release.sh
+              ./packages/${changed_package}/release/deployment.sh
             done

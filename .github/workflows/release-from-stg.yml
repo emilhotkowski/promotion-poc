@@ -26,6 +26,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - run: ./packages/${{github.event.inputs.release-package}}/release/release.sh
+      - run: ./packages/${{github.event.inputs.release-package}}/release/deployment.sh
         env:
           ENV_SECRET: ${{ secrets.ENV_SECRET }}
