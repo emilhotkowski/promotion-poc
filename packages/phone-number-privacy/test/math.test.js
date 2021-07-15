@@ -1,4 +1,4 @@
-const myMath = reqire("../index")
+const myMath = require("../index")
 
 describe("Math test", () => {
 
