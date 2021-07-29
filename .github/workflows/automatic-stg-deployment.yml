@@ -27,6 +27,7 @@ jobs:
           retry_on: error
           command: |
             changed_packages=()
+            echo $steps.files.outputs.all
             for changed_file in ${{ steps.files.outputs.all }}; do
 
               #check if changed file is under "packages/" folder
@@ -38,6 +39,7 @@ jobs:
                 changed_packages+=($package_name)
               fi
             done
+            echo $changed_packages
             dedup_changed_packages=( $(printf '%s\n' "${changed_packages[@]}" | sort -u) )
             echo $dedup_changed_packages
             echo "::set-output name=changed_packages::$dedup_changed_packages"
