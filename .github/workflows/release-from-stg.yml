@@ -19,6 +19,7 @@ jobs:
       - run: ./packages/${{github.event.inputs.release-package}}/release/deployment.sh
         env:
           ENV_SECRET: ${{ secrets.ENV_SECRET }}
+
   Test-Alfajores:
     environment: STG
     runs-on: ubuntu-latest
