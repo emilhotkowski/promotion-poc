@@ -1,1 +1,1 @@
-echo "Release attestation service $ENV_SECRET"
+echo "Release attestation service $ENV_SECRET and $FIRST_NAME"
