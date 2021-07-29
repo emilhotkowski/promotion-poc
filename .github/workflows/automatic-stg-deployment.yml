@@ -39,6 +39,7 @@ jobs:
               fi
             done
             dedup_changed_packages=( $(printf '%s\n' "${changed_packages[@]}" | sort -u) )
+            echo $dedup_changed_packages
             echo "::set-output name=changed_packagess::$dedup_changed_packages"
       - name: Check outputs
         shell: bash
