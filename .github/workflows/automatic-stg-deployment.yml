@@ -41,7 +41,7 @@ jobs:
       - name: Check outputs
         shell: bash
         run: |
-          for changedPackage in "${{steps.changedPackages.outputs.changed_packages}}"
+          for changedPackage in ${{steps.changedPackages.outputs.changed_packages}}
           do
              echo "Package : $changedPackage"
           done
